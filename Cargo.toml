@@ -1,0 +1,10 @@
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+repository = ""
+homepage = ""
+exclude = ["**/target", "benches/", "tests"]
+
+[workspace.dependencies]

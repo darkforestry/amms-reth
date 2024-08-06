@@ -1,0 +1,8 @@
+
+[package]
+name = "amms-rpc-extensions"
+description = ""
+version = "0.1.0"
+
+
+[dependencies]
