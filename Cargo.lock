@@ -3,9 +3,5 @@
 version = 3
 
 [[package]]
-name = "amms-exex"
-version = "0.1.0"
-
-[[package]]
-name = "amms-rpc-extensions"
+name = "state-space-exex"
 version = "0.1.0"
