@@ -1,10 +1,43 @@
 [workspace]
-members = ["crates/exex/*"]
+members = ["exex/state-space"]
 resolver = "2"
 
-[workspace.package]
-repository = ""
-homepage = ""
-exclude = ["**/target", "benches/", "tests"]
+# [workspace.package]
 
 [workspace.dependencies]
+amms = "0.6.2"
+
+
+# reth
+reth = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-chainspec = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-discv5 = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-execution-errors = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-execution-types = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-exex = { git = "https://github.com/paradigmxyz/reth", features = [
+    "serde",
+], version = "1.0.4" }
+# reth-network-peers = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-node-api = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-primitives = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-provider = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-revm = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-evm = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+# reth-tracing = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+
+# alloy
+alloy-sol-types = { version = "0.7", features = ["json"] }
+
+# async
+futures = "0.3"
+futures-util = "0.3"
+tokio = { version = "1.0", features = ["full"] }
+tokio-stream = "0.1"
+
+# misc
+eyre = "0.6"
+
+# testing
+reth-exex-test-utils = { git = "https://github.com/paradigmxyz/reth" }
+reth-testing-utils = { git = "https://github.com/paradigmxyz/reth" }

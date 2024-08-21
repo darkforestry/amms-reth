@@ -1,0 +1,28 @@
+
+[package]
+name = "state-space-exex"
+description = ""
+version = "0.1.0"
+
+
+[dependencies]
+amms.workspace = true
+
+# reth
+reth.workspace = true
+# reth-chainspec.workspace = true
+# reth-discv5.workspace = true
+reth-execution-errors.workspace = true
+reth-execution-types.workspace = true
+reth-exex.workspace = true
+# reth-network-peers.workspace = true
+reth-node-api.workspace = true
+# reth-node-ethereum.workspace = true
+reth-primitives.workspace = true
+# reth-provider.workspace = true
+# reth-revm.workspace = true
+# reth-evm.workspace = true
+# reth-tracing.workspace = true
+
+
+tokio.workspace = true
