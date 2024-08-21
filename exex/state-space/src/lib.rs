@@ -1,14 +1,14 @@
 use amms::amm::{AutomatedMarketMaker, AMM};
 
-// use alloy::{
-//     primitives::{Address, B256},
-//     rpc::types::eth::Filter,
-// };
+use alloy::{
+    primitives::{Address, B256},
+    rpc::types::eth::Filter,
+};
+
 use amms::state_space::{StateChangeCache, StateSpace};
 use reth_exex::ExExNotification;
 use reth_node_api::FullNodeComponents;
 use reth_primitives::Log;
-use reth_provider::BundleStateWithReceipts;
 use std::{
     collections::{HashMap, HashSet},
     sync::Arc,

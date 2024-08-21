@@ -2,7 +2,13 @@
 members = ["exex/state-space"]
 resolver = "2"
 
-# [workspace.package]
+
+[workspace.package]
+version = "0.1.0"
+rust-version = "1.79"
+edition = "2021"
+license = "MIT"
+publish = false
 
 [workspace.dependencies]
 amms = "0.6.2"
@@ -21,12 +27,13 @@ reth-exex = { git = "https://github.com/paradigmxyz/reth", features = [
 reth-node-api = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 # reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 reth-primitives = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
-# reth-provider = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-provider = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 # reth-revm = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 # reth-evm = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 # reth-tracing = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 
 # alloy
+alloy = "0.2.1"
 alloy-sol-types = { version = "0.7", features = ["json"] }
 
 # async
