@@ -25,7 +25,8 @@ reth-exex = { git = "https://github.com/paradigmxyz/reth", features = [
 ], version = "1.0.4" }
 # reth-network-peers = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 reth-node-api = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
-# reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-node-core = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
+reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 reth-primitives = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 reth-provider = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
 # reth-revm = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
@@ -44,6 +45,7 @@ tokio-stream = "0.1"
 
 # misc
 eyre = "0.6"
+arraydeque = { version = "0.5.1" }
 
 # testing
 reth-exex-test-utils = { git = "https://github.com/paradigmxyz/reth" }

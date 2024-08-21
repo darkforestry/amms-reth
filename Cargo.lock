@@ -8576,6 +8576,7 @@ version = "0.1.0"
 dependencies = [
  "alloy 0.2.1",
  "amms",
+ "arraydeque",
  "reth",
  "reth-execution-errors",
  "reth-execution-types",
