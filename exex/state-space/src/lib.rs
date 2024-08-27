@@ -19,14 +19,14 @@ use tokio::sync::RwLock;
 #[derive(Debug)]
 pub struct StateSpaceManagerExEx {
     state: Arc<RwLock<StateSpace>>,
-    state_change_cache: Arc<RwLock<StateChangeCache>>,
+    state_change_cache: StateChangeCache,
 }
 
 impl StateSpaceManagerExEx {
     pub fn new(amms: Vec<AMM>) -> Self {
         Self {
             state: Arc::new(RwLock::new(amms.into())),
-            state_change_cache: Arc::new(RwLock::new(StateChangeCache::new())),
+            state_change_cache: StateChangeCache::new(),
         }
     }
 
@@ -56,8 +56,6 @@ impl StateSpaceManagerExEx {
         let first_block = new.first().number;
 
         self.state_change_cache
-            .write()
-            .await
             .unwind_state_changes(first_block - 1);
 
         // Apply the new state changes
@@ -113,8 +111,6 @@ impl StateSpaceManagerExEx {
             let state_change = StateChange::new(prev_state, block_number);
 
             self.state_change_cache
-                .write()
-                .await
                 .add_state_change_to_cache(state_change);
         }
 
