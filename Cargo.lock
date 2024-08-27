@@ -975,8 +975,7 @@ dependencies = [
 [[package]]
 name = "amms"
 version = "0.6.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bbeb9f32e61e0d37cbd2389de5ab8d8a158626730dd49fb4469c220b8496c754"
+source = "git+https://github.com/darkforestry/amms-rs.git?rev=a7a102860c92456b9d28d2ecc237e712a8db35da#a7a102860c92456b9d28d2ecc237e712a8db35da"
 dependencies = [
  "alloy 0.2.1",
  "arraydeque",

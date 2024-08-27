@@ -11,7 +11,7 @@ license = "MIT"
 publish = false
 
 [workspace.dependencies]
-amms = "0.6.3"
+amms = { git = "https://github.com/darkforestry/amms-rs.git", rev = "a7a102860c92456b9d28d2ecc237e712a8db35da" }
 
 # reth
 reth = { git = "https://github.com/paradigmxyz/reth", version = "1.0.4" }
