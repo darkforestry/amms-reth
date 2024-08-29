@@ -1,19 +1,14 @@
 use amms::{
     amm::{AutomatedMarketMaker, AMM},
-    state_space::error::StateChangeError,
+    state_space::{cache::StateChangeCache, error::StateSpaceError, StateChange},
 };
 
-use alloy::{primitives::Address, signers::k256::elliptic_curve::rand_core::block};
-
-use amms::state_space::{StateChangeCache, StateSpace};
-use arraydeque::ArrayDeque;
+use alloy::primitives::Address;
+use amms::state_space::StateSpace;
 use reth_exex::ExExNotification;
 use reth_primitives::Log;
-use reth_provider::{ExecutionDataProvider, ExecutionOutcome};
-use std::{
-    collections::{HashMap, HashSet},
-    sync::Arc,
-};
+use reth_provider::ExecutionOutcome;
+use std::{collections::HashSet, sync::Arc};
 use tokio::sync::RwLock;
 
 #[derive(Debug)]
@@ -31,9 +26,9 @@ impl StateSpaceManagerExEx {
     }
 
     pub async fn process_notification(
-        &self,
+        &mut self,
         notification: ExExNotification,
-    ) -> Result<Vec<Address>, StateChangeError> {
+    ) -> Result<Vec<Address>, StateSpaceError> {
         match notification {
             ExExNotification::ChainCommitted { new } => {
                 let num_blocks = new.blocks().len() as u64;
@@ -49,9 +44,9 @@ impl StateSpaceManagerExEx {
     }
 
     pub async fn handle_reorgs(
-        &self,
+        &mut self,
         new: Arc<reth_execution_types::Chain>,
-    ) -> Result<Vec<Address>, StateChangeError> {
+    ) -> Result<Vec<Address>, StateSpaceError> {
         // Unwind the state changes from the old state to the new state
         let first_block = new.first().number;
 
@@ -66,10 +61,10 @@ impl StateSpaceManagerExEx {
     }
 
     pub async fn handle_state_changes(
-        &self,
+        &mut self,
         execution_outcome: &ExecutionOutcome,
         num_blocks: u64,
-    ) -> Result<Vec<Address>, StateChangeError> {
+    ) -> Result<Vec<Address>, StateSpaceError> {
         let first_block = execution_outcome.first_block();
 
         let mut aggregated_updates = vec![];
@@ -84,10 +79,10 @@ impl StateSpaceManagerExEx {
     }
 
     async fn modify_state_from_logs(
-        &self,
+        &mut self,
         logs: impl Iterator<Item = &Log>,
         block_number: u64,
-    ) -> Result<Vec<Address>, StateChangeError> {
+    ) -> Result<Vec<Address>, StateSpaceError> {
         let mut updated_amms = HashSet::new();
         let mut state = self.state.write().await;
         let mut prev_state = vec![];
@@ -111,7 +106,7 @@ impl StateSpaceManagerExEx {
             let state_change = StateChange::new(prev_state, block_number);
 
             self.state_change_cache
-                .add_state_change_to_cache(state_change);
+                .add_state_change_to_cache(state_change)?;
         }
 
         Ok(updated_amms.into_iter().collect())
